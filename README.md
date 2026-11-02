@@ -1,66 +1,79 @@
-# DIO - Trilha .NET - Explorando a Linguagem C#: Sistema de Hospedagem de Hotel
+# DIO - Trilha .NET: Explorando a Linguagem C# | Sistema de Hospedagem de Hotel
 
-Projeto desenvolvido como parte do desafio de código do módulo **Explorando a Linguagem C#** da trilha .NET da [DIO (Digital Innovation One)](https://www.dio.me/).
+Este projeto foi desenvolvido como parte de um desafio de código da trilha .NET da [DIO (Digital Innovation One)](https://www.dio.me/), com o objetivo de colocar em prática os conceitos aprendidos em C#.
 
 ---
 
-## 📌 Contexto e Proposta
+## Sobre o projeto
 
-O objetivo do projeto é construir um sistema de hospedagem para gerenciar reservas de um hotel, integrando hóspedes, suítes e regras de negócio:
+A proposta foi desenvolver um sistema simples para gerenciar reservas de um hotel, trabalhando com hóspedes, suítes e cálculos de hospedagem.
+
+Durante o desenvolvimento, foram implementadas algumas funcionalidades:
+
 - Cadastro de hóspedes e suítes.
-- Validação de capacidade da suíte (não permite mais hóspedes do que a capacidade suportada, disparando uma exceção).
-- Retorno da quantidade total de hóspedes na reserva.
-- Cálculo do valor total da hospedagem com base na diária da suíte e dias reservados.
-- **Regra de desconto**: Reservas iguais ou superiores a **10 dias** recebem **10% de desconto** no valor total.
+- Verificação da capacidade máxima de hóspedes por suíte.
+- Contagem dos hóspedes cadastrados na reserva.
+- Cálculo do valor total da hospedagem de acordo com a diária e a quantidade de dias.
+- Aplicação de 10% de desconto para reservas com 10 dias ou mais.
+
+Caso a quantidade de hóspedes ultrapasse a capacidade da suíte, o sistema retorna uma exceção.
 
 ---
 
-## 📐 Diagrama de Classes
+## Diagrama de Classes
 
 ![Diagrama de classe hotel](diagrama_classe_hotel.png)
 
-### Principais Classes e Responsabilidades:
-- **`Pessoa`**: Representa os dados do hóspede (`Nome`, `Sobrenome`, `NomeCompleto`).
-- **`Suite`**: Representa a acomodação (`TipoSuite`, `Capacidade`, `ValorDiaria`).
-- **`Reserva`**: Relaciona a suíte e a lista de hóspedes:
-  - `CadastrarHospedes(List<Pessoa>)`: Valida se a capacidade é suficiente antes de cadastrar.
-  - `CadastrarSuite(Suite)`: Associa a suíte à reserva.
-  - `ObterQuantidadeHospedes()`: Retorna o número de hóspedes vinculados.
-  - `CalcularValorDiaria()`: Calcula o valor total com aplicação do desconto de 10% para períodos de 10 dias ou mais.
+### Classes do projeto
+
+O projeto foi dividido em três classes principais:
+
+- **Pessoa:** contém as informações dos hóspedes, como nome, sobrenome e nome completo.
+- **Suite:** armazena as informações da suíte, incluindo tipo, capacidade e valor da diária.
+- **Reserva:** responsável por reunir os hóspedes e a suíte, além de realizar as validações e os cálculos da hospedagem.
+
+Na classe `Reserva`, foram utilizados os seguintes métodos:
+
+- `CadastrarHospedes(List<Pessoa>)`: adiciona os hóspedes, verificando a capacidade da suíte.
+- `CadastrarSuite(Suite)`: associa uma suíte à reserva.
+- `ObterQuantidadeHospedes()`: informa quantos hóspedes estão cadastrados.
+- `CalcularValorDiaria()`: calcula o valor da hospedagem e aplica o desconto quando necessário.
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias utilizadas
 
-- **C# / .NET 8**
-- **Git & GitHub**
+- C#
+- .NET 8
+- Git e GitHub
 
 ---
 
-## 📂 Estrutura do Projeto
+## Estrutura do projeto
 
-```
+```text
 trilha-net-explorando-desafio/
 ├── Models/
-│   ├── Pessoa.cs                 # Modelo do hóspede
-│   ├── Reserva.cs                # Lógica da reserva, validação e cálculos
-│   └── Suite.cs                  # Modelo da suíte
-├── DesafioProjetoHospedagem.csproj # Configuração do projeto .NET
-├── Program.cs                    # Testes e execução do fluxo de hospedagem
+│   ├── Pessoa.cs
+│   ├── Reserva.cs
+│   └── Suite.cs
+├── DesafioProjetoHospedagem.csproj
+├── Program.cs
 ├── diagrama_classe_hotel.png
 └── README.md
 ```
 
 ---
 
-## 🚀 Como Executar
+## Como executar
 
-### Pré-requisitos
-- [.NET SDK](https://dotnet.microsoft.com/download) instalado.
+Para executar o projeto, é necessário ter o [.NET SDK](https://dotnet.microsoft.com/download) instalado.
 
-### Passo a passo
-1. Clone o repositório ou abra a pasta no terminal:
-   ```bash
-   dotnet run
-   ```
-2. O console exibirá a quantidade de hóspedes cadastrados e o valor final calculado com o desconto aplicado.
+1. Clone o repositório ou abra a pasta do projeto no terminal.
+2. Execute o comando:
+
+```bash
+dotnet run
+```
+
+Após a execução, o console exibirá as informações da reserva, incluindo a quantidade de hóspedes e o valor total da hospedagem.
